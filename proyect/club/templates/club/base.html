@@ -4,23 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club Deportivo Messi</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            color: #333;
+        }
+        header, nav, main {
+            text-align: center;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            background: #007bff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1 style="color: blue; text-align: center;">
-            {% block titulo %}
-                
-            {% endblock titulo %}
-        </h1>
+        <h1>{% block titulo %}{% endblock titulo %}</h1>
     </header>
-    <nav style="text-align: center;">
+    <nav>
         {% include 'club/navbar.html' %}
     </nav>
-
-    <main style="text-align: center;">
-        {% block main %}
-            
-        {% endblock main %}
+    <main>
+        {% block main %}{% endblock main %}
     </main>
 </body>
 </html>
