@@ -1,0 +1,26 @@
+{% extends 'club/base.html' %}
+
+{% block titulo %}
+    Instalaciones: Registros
+{% endblock titulo %}
+
+
+{% block main %}
+    <button>
+        <a href="{% url 'instalaciones_create' %}">+Añadir Instalaciones</a>
+    </button>
+    {% for object in object_list %}
+    <p>
+        {{ object.nombre }} - Capacidad: {{ object.capacidad }} - {% if object.necesita_reserva %} Requiere Reserva {% else %} No Requiere Reserva {% endif %}
+        <br>
+            Deportes asociados:
+            {% for deporte in object.deportes.all %}
+                {{ deporte.nombre }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                Ningún deporte asociado.
+            {% endfor %}
+    </p>
+    {% empty %}
+        <p> No hay registros para mostrar </p>    
+    {% endfor %}
+{% endblock main %}

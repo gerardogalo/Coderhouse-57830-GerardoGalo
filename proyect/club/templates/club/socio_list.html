@@ -1,0 +1,27 @@
+{% extends 'club/base.html' %}
+
+{% block titulo %}
+    Socio: Registros
+{% endblock titulo %}
+
+
+{% block main %}
+    <button>
+        <a href="{% url 'socio_create' %}">+Añadir Socio</a>
+    </button>
+    {% for object in object_list %}
+        <p>
+            {{ object.apellido|upper }}, {{ object.nombre }} - {{ object.correo_electronico }}
+            - Estado: {% if object.activo %} Activo {% else %} No Activo {% endif %}
+            <br>
+            Deportes inscriptos: 
+            {% for deporte in object.deportes.all %}
+                {{ deporte.nombre }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                Ninguno
+            {% endfor %}
+        </p>
+    {% empty %}
+        <p> No hay registros para mostrar </p>    
+    {% endfor %}
+{% endblock main %}
