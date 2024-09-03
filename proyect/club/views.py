@@ -9,6 +9,14 @@ def index(request):
 
 def socio_list(request):
     query = Socio.objects.all()
+    apellido = request.GET.get('apellido')
+    estado = request.GET.get('estado')
+
+    if apellido:
+        query = query.filter(apellido__icontains=apellido)
+    if estado != '' and estado is not None:
+        query = query.filter(activo=estado == '1')
+
     context = {"object_list": query}
     return render(request, "club/socio_list.html", context)
 

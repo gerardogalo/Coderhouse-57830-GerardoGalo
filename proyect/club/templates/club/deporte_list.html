@@ -7,7 +7,7 @@
 
 {% block main %}
     <button>
-        <a href="{% url 'deporte_create' %}">+Añadir Deporte</a>
+        <a href="{% url 'deporte_create' %}">➕Añadir Deporte</a>
     </button>
     {% for object in object_list %}
         <p>{{ object.nombre|upper }} - Cuota: ${{ object.cuota_mensual }} - {% if object.disponible %} Disponible {% else %} No Disponible {% endif %}</p>

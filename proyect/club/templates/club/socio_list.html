@@ -1,20 +1,30 @@
 {% extends 'club/base.html' %}
 
 {% block titulo %}
-    Socio: Registros
+    Socios: Registros
 {% endblock titulo %}
 
-
 {% block main %}
+    <form method="get" style="margin-bottom: 20px;">
+        <input type="text" name="apellido" placeholder="Buscar por apellido..." value="{{ request.GET.apellido|default_if_none:'' }}">
+        <select name="estado">
+            <option value="">Todos</option>
+            <option value="1" {% if request.GET.estado == '1' %}selected{% endif %}>Activo</option>
+            <option value="0" {% if request.GET.estado == '0' %}selected{% endif %}>No Activo</option>
+        </select>
+        <button type="submit">🔍Buscar</button>
+    </form>
+
     <button>
-        <a href="{% url 'socio_create' %}">+Añadir Socio</a>
+        <a href="{% url 'socio_create' %}">➕Añadir Socio</a>
     </button>
+
     {% for object in object_list %}
         <p>
             {{ object.apellido|upper }}, {{ object.nombre }} - {{ object.correo_electronico }}
             - Estado: {% if object.activo %} Activo {% else %} No Activo {% endif %}
             <br>
-            Deportes inscriptos: 
+            Deportes inscritos: 
             {% for deporte in object.deportes.all %}
                 {{ deporte.nombre }}{% if not forloop.last %}, {% endif %}
             {% empty %}
