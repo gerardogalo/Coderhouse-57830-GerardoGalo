@@ -14,18 +14,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+#from club import views
 from django.contrib import admin
 from django.urls import path
-from club import views
+from club.views import (
+    index,
+    SocioListView, SocioCreateView,
+    DeporteListView, DeporteCreateView,
+    InstalacionListView, InstalacionCreateView
+)
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("", views.index, name="index"),
-    path("socio/list/", views.socio_list, name="socio_list"),
-    path("deporte/list/", views.deporte_list, name="deporte_list"),
-    path("instalaciones/list/", views.instalaciones_list, name="instalaciones_list"),
-    path("socio/create/", views.socio_create, name="socio_create"),
-    path("deporte/create/", views.deporte_create, name="deporte_create"),
-    path("instalaciones/create/", views.instalaciones_create, name="instalaciones_create"),
+    path('admin/', admin.site.urls),  # Asegúrate de que esta línea esté presente
+    path('', index, name='index'),
+    path('socios/', SocioListView.as_view(), name='socio_list'),
+    path('socios/create/', SocioCreateView.as_view(), name='socio_create'),
+    path('deportes/', DeporteListView.as_view(), name='deporte_list'),
+    path('deportes/create/', DeporteCreateView.as_view(), name='deporte_create'),
+    path('instalaciones/', InstalacionListView.as_view(), name='instalaciones_list'),
+    path('instalaciones/create/', InstalacionCreateView.as_view(), name='instalaciones_create'),
 ]
 

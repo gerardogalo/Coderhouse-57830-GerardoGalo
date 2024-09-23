@@ -1,61 +1,61 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render#, redirect
 from .models import Socio, Deporte, Instalacion
 from .forms import SocioForm, DeporteForm, InstalacionForm
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
     return render(request, "club/index.html")
 
 
-def socio_list(request):
-    query = Socio.objects.all()
-    apellido = request.GET.get('apellido')
-    estado = request.GET.get('estado')
+# Lista de socios
+class SocioListView(ListView):
+    model = Socio
+    template_name = 'club/socio_list.html'
+    context_object_name = 'object_list'
 
-    if apellido:
-        query = query.filter(apellido__icontains=apellido)
-    if estado != '' and estado is not None:
-        query = query.filter(activo=estado == '1')
+    def get_queryset(self):
+        queryset = Socio.objects.all()
+        apellido = self.request.GET.get('apellido')
+        estado = self.request.GET.get('estado')
 
-    context = {"object_list": query}
-    return render(request, "club/socio_list.html", context)
+        if apellido:
+            queryset = queryset.filter(apellido__icontains=apellido)
+        if estado != '' and estado is not None:
+            queryset = queryset.filter(activo=estado == '1')
 
-def deporte_list(request):
-    query = Deporte.objects.all()
-    context = {"object_list": query}
-    return render(request, "club/deporte_list.html", context)
+        return queryset
 
-def instalaciones_list(request):
-    query = Instalacion.objects.all()
-    context = {"object_list": query}
-    return render(request, "club/instalaciones_list.html", context)
+# Lista de deportes
+class DeporteListView(ListView):
+    model = Deporte
+    template_name = 'club/deporte_list.html'
+    context_object_name = 'object_list'
 
-def socio_create(request):
-    if request.method == "GET":
-        form = SocioForm()
-    if request.method == "POST":
-        form = SocioForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("socio_list")
-    return render(request, "club/socio_create.html",{"form": form})
+# Lista de instalaciones
+class InstalacionListView(ListView):
+    model = Instalacion
+    template_name = 'club/instalaciones_list.html'
+    context_object_name = 'object_list'
 
-def deporte_create(request):
-    if request.method == "GET":
-        form = DeporteForm()
-    if request.method == "POST":
-        form = DeporteForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("deporte_list")
-    return render(request, "club/deporte_create.html",{"form": form})
+# Crear socio
+class SocioCreateView(CreateView):
+    model = Socio
+    form_class = SocioForm
+    template_name = 'club/socio_create.html'
+    success_url = reverse_lazy('socio_list')
 
-def instalaciones_create(request):
-    if request.method == "GET":
-        form = InstalacionForm()
-    if request.method == "POST":
-        form = InstalacionForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("instalaciones_list")
-    return render(request, "club/instalaciones_create.html",{"form": form})
+# Crear deporte
+class DeporteCreateView(CreateView):
+    model = Deporte
+    form_class = DeporteForm
+    template_name = 'club/deporte_create.html'
+    success_url = reverse_lazy('deporte_list')
+
+# Crear instalación
+class InstalacionCreateView(CreateView):
+    model = Instalacion
+    form_class = InstalacionForm
+    template_name = 'club/instalaciones_create.html'
+    success_url = reverse_lazy('instalaciones_list')

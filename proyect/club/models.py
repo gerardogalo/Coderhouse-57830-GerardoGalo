@@ -4,7 +4,7 @@ from django.db import models
 class Socio(models.Model):
     deportes = models.ManyToManyField('Deporte', related_name='socios')
     nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50, db_index=True)
     año_nacimiento = models.IntegerField()
     correo_electronico = models.EmailField(blank=True, null=True)
     activo = models.BooleanField(default=True)
