@@ -9,10 +9,14 @@ from .models import Socio, Deporte, Instalacion
 
 @admin.register(Socio)
 class SocioAdmin(admin.ModelAdmin):
-    list_display = ('apellido','nombre', 'correo_electronico', 'activo')
+    list_display = ('apellido','nombre', 'correo_electronico', 'activo','edad')
     list_filter = ('activo',)
     search_fields = ('nombre', 'apellido', 'correo_electronico')
     ordering = ('apellido', 'nombre')
+
+    def edad(self, obj):
+        return obj.edad()
+    edad.short_description = 'Edad'
 
 @admin.register(Deporte)
 class DeporteAdmin(admin.ModelAdmin):

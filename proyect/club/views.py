@@ -1,4 +1,4 @@
-from django.shortcuts import render#, redirect
+from django.shortcuts import render, redirect
 from .models import Socio, Deporte, Instalacion
 from .forms import SocioForm, DeporteForm, InstalacionForm
 from django.views.generic import ListView, CreateView

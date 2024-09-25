@@ -23,6 +23,7 @@
         <p>
             {{ object.apellido|upper }}, {{ object.nombre }} - {{ object.correo_electronico }}
             - Estado: {% if object.activo %} Activo {% else %} No Activo {% endif %}
+            - Edad: {{ socio.edad }} años
             <br>
             Deportes inscritos: 
             {% for deporte in object.deportes.all %}

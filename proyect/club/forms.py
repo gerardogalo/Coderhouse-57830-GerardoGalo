@@ -1,5 +1,5 @@
 from django import forms
-
+from django.forms import DateInput
 from .models import Socio, Deporte, Instalacion
 
 class SocioForm(forms.ModelForm):
@@ -13,7 +13,7 @@ class SocioForm(forms.ModelForm):
         model = Socio
         fields = "__all__"
         widgets = {
-            'año_nacimiento': forms.NumberInput(attrs={'min': 1900, 'max': 2022})
+            'fecha_nacimiento': DateInput(attrs={'type': 'date'}),
         }
 
 class DeporteForm(forms.ModelForm):
