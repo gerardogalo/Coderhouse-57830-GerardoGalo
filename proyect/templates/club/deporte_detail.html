@@ -1,11 +1,10 @@
 {% extends 'club/base.html' %}
 
 {% block titulo %}
-    Detalle del Deporte
+    Deporte: Detalle
 {% endblock titulo %}
 
 {% block main %}
-    <h2>Detalle del Deporte</h2>
     <p>Nombre: {{ object.nombre }}</p>
     <p>Descripción: {{ object.descripcion }}</p>
     <p>Cuota Mensual: ${{ object.cuota_mensual }}</p>

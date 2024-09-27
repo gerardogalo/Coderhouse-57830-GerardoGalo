@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Socio, Deporte, Instalacion
 from .forms import SocioForm, DeporteForm, InstalacionForm
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -26,21 +26,11 @@ class SocioListView(ListView):
 
         return queryset
 
-# Detalle de socio
-class SocioDetailView(DetailView):
-    model = Socio
-    template_name = 'club/socio_detail.html'
-
 # Lista de deportes
 class DeporteListView(ListView):
     model = Deporte
     template_name = 'club/deporte_list.html'
     context_object_name = 'object_list'
-
-# Detalle de deporte
-class DeporteDetailView(DetailView):
-    model = Deporte
-    template_name = 'club/deporte_detail.html'
 
 # Lista de instalaciones
 class InstalacionListView(ListView):
@@ -48,28 +38,65 @@ class InstalacionListView(ListView):
     template_name = 'club/instalaciones_list.html'
     context_object_name = 'object_list'
 
-# Detalle de instalación
-class InstalacionDetailView(DetailView):
-    model = Instalacion
-    template_name = 'club/instalaciones_detail.html'
+
 
 # Crear socio
 class SocioCreateView(CreateView):
     model = Socio
     form_class = SocioForm
-    template_name = 'club/socio_create.html'
+    template_name = 'club/socio_form.html'
     success_url = reverse_lazy('socio_list')
 
 # Crear deporte
 class DeporteCreateView(CreateView):
     model = Deporte
     form_class = DeporteForm
-    template_name = 'club/deporte_create.html'
+    template_name = 'club/deporte_form.html'
     success_url = reverse_lazy('deporte_list')
 
 # Crear instalación
 class InstalacionCreateView(CreateView):
     model = Instalacion
     form_class = InstalacionForm
-    template_name = 'club/instalaciones_create.html'
+    template_name = 'club/instalaciones_form.html'
+    success_url = reverse_lazy('instalaciones_list')
+
+
+
+# Detalle de socio
+class SocioDetailView(DetailView):
+    model = Socio
+    template_name = 'club/socio_detail.html'
+
+# Detalle de deporte
+class DeporteDetailView(DetailView):
+    model = Deporte
+    template_name = 'club/deporte_detail.html'
+
+# Detalle de instalación
+class InstalacionDetailView(DetailView):
+    model = Instalacion
+    template_name = 'club/instalaciones_detail.html'
+
+
+
+# Editar socio
+class SocioUpdateView(UpdateView):
+    model = Socio
+    form_class = SocioForm
+    template_name = 'club/socio_form.html'
+    success_url = reverse_lazy('socio_list')
+
+# Editar deporte
+class DeporteUpdateView(UpdateView):
+    model = Deporte
+    form_class = DeporteForm
+    template_name = 'club/deporte_form.html'
+    success_url = reverse_lazy('deporte_list')
+
+# Editar instalación
+class InstalacionUpdateView(UpdateView):
+    model = Instalacion
+    form_class = InstalacionForm
+    template_name = 'club/instalaciones_form.html'
     success_url = reverse_lazy('instalaciones_list')

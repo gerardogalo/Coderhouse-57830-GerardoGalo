@@ -12,6 +12,7 @@
     <p>
         {{ object.nombre }}
         <a href="{% url 'instalaciones_detail' object.id %}">Detalle</a>
+        <a href="{% url 'instalaciones_edit' object.id %}">Editar</a>
     </p>
     {% empty %}
         <p> No hay registros para mostrar </p>    

@@ -1,11 +1,10 @@
 {% extends 'club/base.html' %}
 
 {% block titulo %}
-    Detalle del Socio
+    Socio: Detalle
 {% endblock titulo %}
 
 {% block main %}
-    <h2>Detalle del Socio</h2>
     <p>Nombre: {{ object.nombre }} {{ object.apellido }}</p>
     <p>Correo Electrónico: {{ object.correo_electronico }}</p>
     <p>Fecha de Nacimiento: {{ object.fecha_nacimiento|date:"d/m/Y" }}</p>
