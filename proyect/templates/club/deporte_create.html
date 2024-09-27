@@ -10,5 +10,6 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Enviar</button>
+        <button><a href="{% url 'deporte_list' %}" class="button">Volver</a></button>
     </form>
 {% endblock main %}
