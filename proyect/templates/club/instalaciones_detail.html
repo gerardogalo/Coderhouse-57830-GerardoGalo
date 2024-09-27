@@ -1,0 +1,17 @@
+{% extends 'club/base.html' %}
+
+{% block titulo %}
+    Detalle de la Instalación
+{% endblock titulo %}
+
+{% block main %}
+    <h2>Detalle de la Instalación</h2>
+    <p>Nombre: {{ object.nombre }}</p>
+    <p>Descripción: {{ object.descripcion }}</p>
+    <p>Capacidad: {{ object.capacidad }}</p>
+    <p>Requiere Reserva: {{ object.necesita_reserva|yesno:"Sí,No" }}</p>
+    <p>Horario Disponible: {{ object.horario_disponible }}</p>
+    <p>Estado: {{ object.disponible|yesno:"Disponible,No Disponible" }}</p>
+    <p>Deportes Disponibles: {% for deporte in object.deportes.all %} {{ deporte.nombre }}{% if not forloop.last %}, {% endif %}{% empty %} Ningún deporte asociado {% endfor %}</p>
+    <a href="{% url 'instalaciones_list' %}">Volver al listado</a>
+{% endblock %}

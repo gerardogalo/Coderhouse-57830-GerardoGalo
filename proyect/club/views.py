@@ -1,13 +1,12 @@
-from django.shortcuts import render#, redirect
+from django.shortcuts import render
 from .models import Socio, Deporte, Instalacion
 from .forms import SocioForm, DeporteForm, InstalacionForm
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
     return render(request, "club/index.html")
-
 
 # Lista de socios
 class SocioListView(ListView):
@@ -27,6 +26,10 @@ class SocioListView(ListView):
 
         return queryset
 
+# Detalle de socio
+class SocioDetailView(DetailView):
+    model = Socio
+    template_name = 'club/socio_detail.html'
 
 # Lista de deportes
 class DeporteListView(ListView):
@@ -34,11 +37,21 @@ class DeporteListView(ListView):
     template_name = 'club/deporte_list.html'
     context_object_name = 'object_list'
 
+# Detalle de deporte
+class DeporteDetailView(DetailView):
+    model = Deporte
+    template_name = 'club/deporte_detail.html'
+
 # Lista de instalaciones
 class InstalacionListView(ListView):
     model = Instalacion
     template_name = 'club/instalaciones_list.html'
     context_object_name = 'object_list'
+
+# Detalle de instalación
+class InstalacionDetailView(DetailView):
+    model = Instalacion
+    template_name = 'club/instalaciones_detail.html'
 
 # Crear socio
 class SocioCreateView(CreateView):

@@ -4,13 +4,15 @@
     Deporte: Registros
 {% endblock titulo %}
 
-
 {% block main %}
     <button>
         <a href="{% url 'deporte_create' %}">➕Añadir Deporte</a>
     </button>
     {% for object in object_list %}
-        <p>{{ object.nombre|upper }} - Cuota: ${{ object.cuota_mensual }} - {% if object.disponible %} Disponible {% else %} No Disponible {% endif %}</p>
+    <p>
+        {{ object.nombre|upper }}
+        <a href="{% url 'deporte_detail' object.id %}">Detalle</a>
+    </p>
     {% empty %}
         <p> No hay registros para mostrar </p>    
     {% endfor %}

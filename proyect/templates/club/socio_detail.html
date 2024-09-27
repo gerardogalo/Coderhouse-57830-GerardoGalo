@@ -1,0 +1,15 @@
+{% extends 'club/base.html' %}
+
+{% block titulo %}
+    Detalle del Socio
+{% endblock titulo %}
+
+{% block main %}
+    <h2>Detalle del Socio</h2>
+    <p>Nombre: {{ object.nombre }} {{ object.apellido }}</p>
+    <p>Correo Electrónico: {{ object.correo_electronico }}</p>
+    <p>Fecha de Nacimiento: {{ object.fecha_nacimiento|date:"d/m/Y" }}</p>
+    <p>Estado: {{ object.activo|yesno:"Activo,No Activo" }}</p>
+    <p>Deportes Inscritos: {% for deporte in object.deportes.all %} {{ deporte.nombre }}{% if not forloop.last %}, {% endif %}{% empty %} Ninguno {% endfor %}</p>
+    <a href="{% url 'socio_list' %}">Volver al listado</a>
+{% endblock %}

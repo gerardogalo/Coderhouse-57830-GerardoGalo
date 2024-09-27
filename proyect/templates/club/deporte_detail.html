@@ -1,0 +1,15 @@
+{% extends 'club/base.html' %}
+
+{% block titulo %}
+    Detalle del Deporte
+{% endblock titulo %}
+
+{% block main %}
+    <h2>Detalle del Deporte</h2>
+    <p>Nombre: {{ object.nombre }}</p>
+    <p>Descripción: {{ object.descripcion }}</p>
+    <p>Cuota Mensual: ${{ object.cuota_mensual }}</p>
+    <p>Estado: {{ object.disponible|yesno:"Disponible,No Disponible" }}</p>
+    <p>Instalaciones Asociadas: {% for instalacion in object.instalaciones.all %} {{ instalacion.nombre }}{% if not forloop.last %}, {% endif %}{% empty %} Ninguna {% endfor %}</p>
+    <a href="{% url 'deporte_list' %}">Volver al listado</a>
+{% endblock %}

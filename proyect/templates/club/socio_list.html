@@ -21,16 +21,9 @@
 
     {% for object in object_list %}
         <p>
-            {{ object.apellido|upper }}, {{ object.nombre }} - {{ object.correo_electronico }}
+            {{ object.apellido|upper }}, {{ object.nombre }}
+            <a href="{% url 'socio_detail' object.id %}">Detalle</a>
             - Estado: {% if object.activo %} Activo {% else %} No Activo {% endif %}
-            - Edad: {{ socio.edad }} años
-            <br>
-            Deportes inscritos: 
-            {% for deporte in object.deportes.all %}
-                {{ deporte.nombre }}{% if not forloop.last %}, {% endif %}
-            {% empty %}
-                Ninguno
-            {% endfor %}
         </p>
     {% empty %}
         <p> No hay registros para mostrar </p>    

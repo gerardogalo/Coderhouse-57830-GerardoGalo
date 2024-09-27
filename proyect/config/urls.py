@@ -19,9 +19,9 @@ from django.contrib import admin
 from django.urls import path
 from club.views import (
     index,
-    SocioListView, SocioCreateView,
-    DeporteListView, DeporteCreateView,
-    InstalacionListView, InstalacionCreateView
+    SocioListView, SocioCreateView, SocioDetailView,
+    DeporteListView, DeporteCreateView, DeporteDetailView,
+    InstalacionListView, InstalacionCreateView, InstalacionDetailView
 )
 
 
@@ -34,5 +34,8 @@ urlpatterns = [
     path('deportes/create/', DeporteCreateView.as_view(), name='deporte_create'),
     path('instalaciones/', InstalacionListView.as_view(), name='instalaciones_list'),
     path('instalaciones/create/', InstalacionCreateView.as_view(), name='instalaciones_create'),
+    path('socios/<int:pk>/', SocioDetailView.as_view(), name='socio_detail'),
+    path('deportes/<int:pk>/', DeporteDetailView.as_view(), name='deporte_detail'),
+    path('instalaciones/<int:pk>/', InstalacionDetailView.as_view(), name='instalaciones_detail'),
 ]
 

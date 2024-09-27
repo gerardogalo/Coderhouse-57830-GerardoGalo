@@ -4,21 +4,14 @@
     Instalaciones: Registros
 {% endblock titulo %}
 
-
 {% block main %}
     <button>
         <a href="{% url 'instalaciones_create' %}">➕Añadir Instalación</a>
     </button>
     {% for object in object_list %}
     <p>
-        {{ object.nombre }} - Capacidad: {{ object.capacidad }} - {% if object.necesita_reserva %} Requiere Reserva {% else %} No Requiere Reserva {% endif %}
-        <br>
-            Deportes asociados:
-            {% for deporte in object.deportes.all %}
-                {{ deporte.nombre }}{% if not forloop.last %}, {% endif %}
-            {% empty %}
-                Ningún deporte asociado.
-            {% endfor %}
+        {{ object.nombre }}
+        <a href="{% url 'instalaciones_detail' object.id %}">Detalle</a>
     </p>
     {% empty %}
         <p> No hay registros para mostrar </p>    
