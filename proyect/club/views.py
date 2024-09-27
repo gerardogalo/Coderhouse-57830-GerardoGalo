@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Socio, Deporte, Instalacion
 from .forms import SocioForm, DeporteForm, InstalacionForm
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -39,7 +39,7 @@ class InstalacionListView(ListView):
     context_object_name = 'object_list'
 
 
-
+#   CREAR
 # Crear socio
 class SocioCreateView(CreateView):
     model = Socio
@@ -62,7 +62,7 @@ class InstalacionCreateView(CreateView):
     success_url = reverse_lazy('instalaciones_list')
 
 
-
+#   DETALLE
 # Detalle de socio
 class SocioDetailView(DetailView):
     model = Socio
@@ -79,7 +79,7 @@ class InstalacionDetailView(DetailView):
     template_name = 'club/instalaciones_detail.html'
 
 
-
+#   EDITAR
 # Editar socio
 class SocioUpdateView(UpdateView):
     model = Socio
@@ -99,4 +99,24 @@ class InstalacionUpdateView(UpdateView):
     model = Instalacion
     form_class = InstalacionForm
     template_name = 'club/instalaciones_form.html'
+    success_url = reverse_lazy('instalaciones_list')
+
+
+#   ELIMINAR
+# Eliminar socio
+class SocioDeleteView(DeleteView):
+    model = Socio
+    template_name = 'club/socio_confirm_delete.html'
+    success_url = reverse_lazy('socio_list')
+
+# Eliminar deporte
+class DeporteDeleteView(DeleteView):
+    model = Deporte
+    template_name = 'club/deporte_confirm_delete.html'
+    success_url = reverse_lazy('deporte_list')
+
+# Eliminar instalación
+class InstalacionDeleteView(DeleteView):
+    model = Instalacion
+    template_name = 'club/instalaciones_confirm_delete.html'
     success_url = reverse_lazy('instalaciones_list')

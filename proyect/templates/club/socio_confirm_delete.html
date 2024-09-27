@@ -1,0 +1,14 @@
+{% extends 'club/base.html' %}
+
+{% block titulo %}
+    Socio: Confirmar Eliminación
+{% endblock titulo %}
+
+{% block main %}
+    <h2>¿Está seguro que desea eliminar a "{{ object.nombre }}"?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar</button>
+        <a href="{% url 'socio_list' %}">Cancelar</a>
+    </form>
+{% endblock main %}

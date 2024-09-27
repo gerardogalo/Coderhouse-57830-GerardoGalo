@@ -25,6 +25,7 @@
             {% if object.activo %} (Activo) {% else %} (No Activo) {% endif %}
             <a href="{% url 'socio_detail' object.id %}">Detalle</a>
             <a href="{% url 'socio_edit' object.id %}">Editar</a>
+            <a href="{% url 'socio_delete' object.id %}">Eliminar</a>
         </p>
     {% empty %}
         <p> No hay registros para mostrar </p>    

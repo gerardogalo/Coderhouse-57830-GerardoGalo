@@ -22,7 +22,8 @@ from club.views import (
     SocioListView, SocioCreateView, SocioDetailView,
     DeporteListView, DeporteCreateView, DeporteDetailView,
     InstalacionListView, InstalacionCreateView, InstalacionDetailView,
-    SocioUpdateView, DeporteUpdateView, InstalacionUpdateView
+    SocioUpdateView, DeporteUpdateView, InstalacionUpdateView,
+    SocioDeleteView, DeporteDeleteView, InstalacionDeleteView
 )
 
 
@@ -41,5 +42,8 @@ urlpatterns = [
     path('socios/edit/<int:pk>/', SocioUpdateView.as_view(), name='socio_edit'),
     path('deportes/edit/<int:pk>/', DeporteUpdateView.as_view(), name='deporte_edit'),
     path('instalaciones/edit/<int:pk>/', InstalacionUpdateView.as_view(), name='instalaciones_edit'),
+    path('socios/delete/<int:pk>/', SocioDeleteView.as_view(), name='socio_delete'),
+    path('deportes/delete/<int:pk>/', DeporteDeleteView.as_view(), name='deporte_delete'),
+    path('instalaciones/delete/<int:pk>/', InstalacionDeleteView.as_view(), name='instalaciones_delete'),
 ]
 

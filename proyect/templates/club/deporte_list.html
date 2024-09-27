@@ -13,6 +13,7 @@
         {{ object.nombre|upper }}
         <a href="{% url 'deporte_detail' object.id %}">Detalle</a>
         <a href="{% url 'deporte_edit' object.id %}">Editar</a>
+        <a href="{% url 'deporte_delete' object.id %}">Eliminar</a>
     </p>
     {% empty %}
         <p> No hay registros para mostrar </p>    
