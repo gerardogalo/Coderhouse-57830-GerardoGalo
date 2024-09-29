@@ -1,0 +1,11 @@
+{% extends 'club/base.html' %}
+
+{% block titulo %}
+    Cerrar Sesion
+{% endblock titulo %}
+
+{% block main %}
+    <h2>Hasta luego!</h2>
+    <p>Has cerrado sesión correctamente.</p>
+    <button><a href="{% url 'index' %}" class="button">Ok</a></button>
+{% endblock main %}

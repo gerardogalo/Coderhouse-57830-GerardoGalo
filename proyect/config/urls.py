@@ -23,9 +23,10 @@ from club.views import (
     DeporteListView, DeporteCreateView, DeporteDetailView,
     InstalacionListView, InstalacionCreateView, InstalacionDetailView,
     SocioUpdateView, DeporteUpdateView, InstalacionUpdateView,
-    SocioDeleteView, DeporteDeleteView, InstalacionDeleteView
+    SocioDeleteView, DeporteDeleteView, InstalacionDeleteView,
+    Register
 )
-
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # Asegúrate de que esta línea esté presente
@@ -45,5 +46,8 @@ urlpatterns = [
     path('socios/delete/<int:pk>/', SocioDeleteView.as_view(), name='socio_delete'),
     path('deportes/delete/<int:pk>/', DeporteDeleteView.as_view(), name='deporte_delete'),
     path('instalaciones/delete/<int:pk>/', InstalacionDeleteView.as_view(), name='instalaciones_delete'),
+    path('login/', LoginView.as_view(template_name='club/login.html'), name='login'),
+    path('logout/', LogoutView.as_view(template_name='club/logout.html'), name='logout'),
+    path('register/', Register.as_view(), name='register'),
 ]
 

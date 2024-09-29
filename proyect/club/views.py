@@ -3,11 +3,13 @@ from .models import Socio, Deporte, Instalacion
 from .forms import SocioForm, DeporteForm, InstalacionForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from .forms import CustomUserCreationForm
 
 # Create your views here.
 def index(request):
     return render(request, "club/index.html")
 
+#******LISTAS
 # Lista de socios
 class SocioListView(ListView):
     model = Socio
@@ -39,7 +41,7 @@ class InstalacionListView(ListView):
     context_object_name = 'object_list'
 
 
-#   CREAR
+#******CREAR
 # Crear socio
 class SocioCreateView(CreateView):
     model = Socio
@@ -62,7 +64,7 @@ class InstalacionCreateView(CreateView):
     success_url = reverse_lazy('instalaciones_list')
 
 
-#   DETALLE
+#******DETALLE
 # Detalle de socio
 class SocioDetailView(DetailView):
     model = Socio
@@ -79,7 +81,7 @@ class InstalacionDetailView(DetailView):
     template_name = 'club/instalaciones_detail.html'
 
 
-#   EDITAR
+#******EDITAR
 # Editar socio
 class SocioUpdateView(UpdateView):
     model = Socio
@@ -102,7 +104,7 @@ class InstalacionUpdateView(UpdateView):
     success_url = reverse_lazy('instalaciones_list')
 
 
-#   ELIMINAR
+#******ELIMINAR
 # Eliminar socio
 class SocioDeleteView(DeleteView):
     model = Socio
@@ -120,3 +122,11 @@ class InstalacionDeleteView(DeleteView):
     model = Instalacion
     template_name = 'club/instalaciones_confirm_delete.html'
     success_url = reverse_lazy('instalaciones_list')
+
+
+
+#******REGISTRO
+class Register(CreateView):
+    form_class = CustomUserCreationForm
+    template_name = 'club/register.html'
+    success_url = reverse_lazy('login')

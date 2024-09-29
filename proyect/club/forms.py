@@ -4,6 +4,9 @@ from .models import Socio, Deporte, Instalacion
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from datetime import timedelta
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
 
 class SocioForm(forms.ModelForm):
     deportes = forms.ModelMultipleChoiceField(
@@ -46,4 +49,7 @@ class InstalacionForm(forms.ModelForm):
             'descripcion': forms.Textarea(attrs={'rows': 4, 'cols': 15})
         }
 
-
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'password1', 'password2')

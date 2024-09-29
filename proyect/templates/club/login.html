@@ -1,0 +1,19 @@
+{% extends 'club/base.html' %}
+
+{% block titulo %}
+    Iniciar Sesion
+{% endblock titulo %}
+
+{% block main %}
+<div style="display: flex; justify-content: center">
+    <form method="post" style="width: 320px;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Iniciar sesión</button>
+    </form>
+</div>
+<div style="margin-top: 20px;">
+    Si deseas crear una cuenta <a href="{% url 'register' %}">clic aquí</a>
+</div>
+
+{% endblock main %}

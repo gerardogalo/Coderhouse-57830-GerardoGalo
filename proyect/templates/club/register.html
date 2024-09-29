@@ -1,0 +1,15 @@
+{% extends 'club/base.html' %}
+
+{% block titulo %}
+    Regístrate
+{% endblock titulo %}
+
+{% block main %}
+<div style="text-align: left;">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Registrar</button>
+    </form>
+</div>
+{% endblock main %}

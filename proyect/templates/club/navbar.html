@@ -1,5 +1,15 @@
-<button><a href="{% url 'index' %}">🏠 Home</a></button>
-<button><a href="{% url 'socio_list' %}">👥 Socios</a></button>
-<button><a href="{% url 'deporte_list' %}">⚽ Deportes</a></button>
-<button><a href="{% url 'instalaciones_list' %}">🏗️ Instalaciones</a></button>
+
+    <button><a href="{% url 'index' %}">🏠 Home</a></button>
+{% if user.is_authenticated %}
+    <button><a href="{% url 'socio_list' %}">👥 Socios</a></button>
+    <button><a href="{% url 'deporte_list' %}">⚽ Deportes</a></button>
+    <button><a href="{% url 'instalaciones_list' %}">🏗️ Instalaciones</a></button>
+    <button style="color: #3f3f3f;">👤 Hola {{ user.username }}</button>
+    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" style="color: red;">🔓 Logout</button>
+    </form>
+{% else %}
+    <button><a style="color: #3f3f3f;" href="{% url 'login' %}">🔓 Login</a></button>
+{% endif %}
 
