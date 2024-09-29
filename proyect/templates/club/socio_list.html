@@ -19,15 +19,32 @@
         <a href="{% url 'socio_create' %}">➕Añadir Socio</a>
     </button>
 
-    {% for object in object_list %}
-        <p>
-            {{ object.apellido|upper }}, {{ object.nombre }}
-            {% if object.activo %} (Activo) {% else %} (No Activo) {% endif %}
-            <a href="{% url 'socio_detail' object.id %}">Detalle</a>
-            <a href="{% url 'socio_edit' object.id %}">Editar</a>
-            <a href="{% url 'socio_delete' object.id %}">Eliminar</a>
-        </p>
-    {% empty %}
-        <p> No hay registros para mostrar </p>    
-    {% endfor %}
+    <div style="display: flex; justify-content: center;">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Detalle</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+                <tr>
+                    <td>{{ object.apellido|upper }}, {{ object.nombre }}</td>
+                    <td>{% if object.activo %} Activo {% else %} No Activo {% endif %}</td>
+                    <td><a href="{% url 'socio_detail' object.id %}">🔍</a></td>
+                    <td><a href="{% url 'socio_edit' object.id %}">✏️</a></td>
+                    <td><a href="{% url 'socio_delete' object.id %}">❌</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No hay registros para mostrar</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
 {% endblock main %}

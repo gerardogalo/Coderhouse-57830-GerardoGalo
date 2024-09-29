@@ -9,14 +9,23 @@ from .models import Socio, Deporte, Instalacion
 
 @admin.register(Socio)
 class SocioAdmin(admin.ModelAdmin):
-    list_display = ('apellido','nombre', 'correo_electronico', 'activo','edad')
+    list_display = ('apellido', 'nombre', 'correo_electronico', 'activo', 'edad')
     list_filter = ('activo',)
     search_fields = ('nombre', 'apellido', 'correo_electronico')
     ordering = ('apellido', 'nombre')
+    actions = ['make_active', 'make_inactive']
 
     def edad(self, obj):
         return obj.edad()
     edad.short_description = 'Edad'
+
+    def make_active(self, request, queryset):
+        queryset.update(activo=True)
+    make_active.short_description = "Marcar seleccionados como activos"
+
+    def make_inactive(self, request, queryset):
+        queryset.update(activo=False)
+    make_inactive.short_description = "Marcar seleccionados como inactivos"
 
 @admin.register(Deporte)
 class DeporteAdmin(admin.ModelAdmin):
