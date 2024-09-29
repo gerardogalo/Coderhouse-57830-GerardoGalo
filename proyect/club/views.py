@@ -4,6 +4,7 @@ from .forms import SocioForm, DeporteForm, InstalacionForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 def index(request):
@@ -11,7 +12,7 @@ def index(request):
 
 #******LISTAS
 # Lista de socios
-class SocioListView(ListView):
+class SocioListView(LoginRequiredMixin, ListView):
     model = Socio
     template_name = 'club/socio_list.html'
     context_object_name = 'object_list'
@@ -29,13 +30,13 @@ class SocioListView(ListView):
         return queryset
 
 # Lista de deportes
-class DeporteListView(ListView):
+class DeporteListView(LoginRequiredMixin, ListView):
     model = Deporte
     template_name = 'club/deporte_list.html'
     context_object_name = 'object_list'
 
 # Lista de instalaciones
-class InstalacionListView(ListView):
+class InstalacionListView(LoginRequiredMixin, ListView):
     model = Instalacion
     template_name = 'club/instalaciones_list.html'
     context_object_name = 'object_list'
@@ -43,21 +44,21 @@ class InstalacionListView(ListView):
 
 #******CREAR
 # Crear socio
-class SocioCreateView(CreateView):
+class SocioCreateView(LoginRequiredMixin, CreateView):
     model = Socio
     form_class = SocioForm
     template_name = 'club/socio_form.html'
     success_url = reverse_lazy('socio_list')
 
 # Crear deporte
-class DeporteCreateView(CreateView):
+class DeporteCreateView(LoginRequiredMixin, CreateView):
     model = Deporte
     form_class = DeporteForm
     template_name = 'club/deporte_form.html'
     success_url = reverse_lazy('deporte_list')
 
 # Crear instalación
-class InstalacionCreateView(CreateView):
+class InstalacionCreateView(LoginRequiredMixin, CreateView):
     model = Instalacion
     form_class = InstalacionForm
     template_name = 'club/instalaciones_form.html'
@@ -66,38 +67,38 @@ class InstalacionCreateView(CreateView):
 
 #******DETALLE
 # Detalle de socio
-class SocioDetailView(DetailView):
+class SocioDetailView(LoginRequiredMixin, DetailView):
     model = Socio
     template_name = 'club/socio_detail.html'
 
 # Detalle de deporte
-class DeporteDetailView(DetailView):
+class DeporteDetailView(LoginRequiredMixin, DetailView):
     model = Deporte
     template_name = 'club/deporte_detail.html'
 
 # Detalle de instalación
-class InstalacionDetailView(DetailView):
+class InstalacionDetailView(LoginRequiredMixin, DetailView):
     model = Instalacion
     template_name = 'club/instalaciones_detail.html'
 
 
 #******EDITAR
 # Editar socio
-class SocioUpdateView(UpdateView):
+class SocioUpdateView(LoginRequiredMixin, UpdateView):
     model = Socio
     form_class = SocioForm
     template_name = 'club/socio_form.html'
     success_url = reverse_lazy('socio_list')
 
 # Editar deporte
-class DeporteUpdateView(UpdateView):
+class DeporteUpdateView(LoginRequiredMixin, UpdateView):
     model = Deporte
     form_class = DeporteForm
     template_name = 'club/deporte_form.html'
     success_url = reverse_lazy('deporte_list')
 
 # Editar instalación
-class InstalacionUpdateView(UpdateView):
+class InstalacionUpdateView(LoginRequiredMixin, UpdateView):
     model = Instalacion
     form_class = InstalacionForm
     template_name = 'club/instalaciones_form.html'
@@ -106,19 +107,19 @@ class InstalacionUpdateView(UpdateView):
 
 #******ELIMINAR
 # Eliminar socio
-class SocioDeleteView(DeleteView):
+class SocioDeleteView(LoginRequiredMixin, DeleteView):
     model = Socio
     template_name = 'club/socio_confirm_delete.html'
     success_url = reverse_lazy('socio_list')
 
 # Eliminar deporte
-class DeporteDeleteView(DeleteView):
+class DeporteDeleteView(LoginRequiredMixin, DeleteView):
     model = Deporte
     template_name = 'club/deporte_confirm_delete.html'
     success_url = reverse_lazy('deporte_list')
 
 # Eliminar instalación
-class InstalacionDeleteView(DeleteView):
+class InstalacionDeleteView(LoginRequiredMixin, DeleteView):
     model = Instalacion
     template_name = 'club/instalaciones_confirm_delete.html'
     success_url = reverse_lazy('instalaciones_list')
