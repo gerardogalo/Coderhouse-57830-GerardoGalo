@@ -19,7 +19,7 @@ class SocioForm(forms.ModelForm):
         model = Socio
         fields = "__all__"
         widgets = {
-            'fecha_nacimiento': DateInput(attrs={'type': 'date'}),
+            'fecha_nacimiento': DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
         }
     
     def clean_fecha_nacimiento(self):
