@@ -9,6 +9,9 @@ Curso Python - CODERHOUSE
 ## Descripción
 Este proyecto Django es un prototipo para gestionar un club deportivo, permitiendo administrar socios, deportes e instalaciones de dicho club. El objetivo es facilitar la gestión de actividades y recursos del club de manera eficiente.
 
+## Video Demostrativo
+Puedes ver un video demostrativo de la aplicación web funcionando en el siguiente enlace: [Ver Video](URL_DEL_VIDEO)
+
 ## Tecnologías Utilizadas
 - Django
 - Python
@@ -69,5 +72,12 @@ Este proyecto Django es un prototipo para gestionar un club deportivo, permitien
 7. Accede a `http://127.0.0.1:8000/admin/` usando el usuario `admin` y la clave `123` para revisar los registros cargados.
 
 ## Nota
-La base de datos incluye varios socios, deportes e instalaciones precargados para facilitar la prueba. Además de `admin`, hay otros dos usuarios cargados: `mocho` con clave `gerardogalo` y `grecia` con clave `bauti2024`.
+La base de datos incluye varios socios, deportes e instalaciones precargados para facilitar la prueba. Además de `admin`, hay otros dos usuarios cargados: `mocho` con clave `gerardogalo` y `grecia` con clave `coderhouse`.
+
+## Mejoras Futuras
+- **Mejora en la Seguridad**: Reforzar las medidas de seguridad, especialmente en la gestión de datos sensibles y transacciones.
+- **Integración con Calendario**: Integrar un sistema de calendario para gestionar turnos, eventos y actividades del club, permitiendo a los socios inscribirse a turnos directamente desde la plataforma.
+- **Módulo de Pagos**: Implementar un sistema de pagos para permitir a los socios pagar cuotas y servicios directamente a través del sitio.
+- **Notificaciones y Alertas**: Desarrollar un sistema de notificaciones para informar a los usuarios sobre eventos próximos, cambios en el calendario, o avisos importantes.
+- **Reportes Dinámicos**: Generar reportes dinámicos sobre la actividad del club, como la asistencia a turnos, ingresos por cuotas, y uso de instalaciones.
 
