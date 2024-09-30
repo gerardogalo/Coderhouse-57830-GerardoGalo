@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 from datetime import timedelta
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, SetPasswordForm, PasswordChangeForm
 
 
 class SocioForm(forms.ModelForm):
@@ -56,6 +56,13 @@ class CustomUserCreationForm(UserCreationForm):
     
 
 class UserProfileForm(forms.ModelForm):
+    password = None  # No mostrar el campo de contraseña actual
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
+        fields = ('first_name', 'last_name', 'email')
+    
+class CustomSetPasswordForm(SetPasswordForm):
+    pass
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    pass

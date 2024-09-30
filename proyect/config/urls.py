@@ -24,7 +24,7 @@ from club.views import (
     InstalacionListView, InstalacionCreateView, InstalacionDetailView,
     SocioUpdateView, DeporteUpdateView, InstalacionUpdateView,
     SocioDeleteView, DeporteDeleteView, InstalacionDeleteView,
-    Register, Profile
+    Register, Profile, ChangePasswordView
 )
 from django.contrib.auth.views import LoginView, LogoutView
 from django.conf import settings
@@ -53,4 +53,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='club/logout.html'), name='logout'),
     path('register/', Register.as_view(), name='register'),
     path('profile/', Profile.as_view(), name='profile'),
+    path('profile/change-password/', ChangePasswordView.as_view(), name='change_password'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

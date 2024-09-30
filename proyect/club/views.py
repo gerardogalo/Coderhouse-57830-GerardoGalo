@@ -2,12 +2,13 @@ from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from .models import Socio, Deporte, Instalacion
-from .forms import SocioForm, DeporteForm, InstalacionForm
+from .forms import SocioForm, DeporteForm, InstalacionForm, CustomUserCreationForm, UserProfileForm, CustomSetPasswordForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .forms import CustomUserCreationForm, UserProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -142,7 +143,19 @@ class Profile(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserProfileForm
     template_name = 'club/profile.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('profile')  # Redirige de nuevo al perfil para ver los cambios
 
     def get_object(self):
         return self.request.user
+    
+    def form_valid(self, form):
+        messages.success(self.request, 'Sus datos de perfil han sido actualizados correctamente.')
+        return super().form_valid(form)
+
+class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'club/change_password.html'
+    success_url = reverse_lazy('profile')  # Redirige al perfil después de cambiar la contraseña
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Tu contraseña ha sido cambiada exitosamente.')
+        return super().form_valid(form)
