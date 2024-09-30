@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from club.views import (
-    index,
+    index, about,
     SocioListView, SocioCreateView, SocioDetailView,
     DeporteListView, DeporteCreateView, DeporteDetailView,
     InstalacionListView, InstalacionCreateView, InstalacionDetailView,
@@ -33,6 +33,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),  # Asegúrate de que esta línea esté presente
     path('', index, name='index'),
+    path('about/', about, name='about'),
     path('socios/', SocioListView.as_view(), name='socio_list'),
     path('socios/create/', SocioCreateView.as_view(), name='socio_create'),
     path('deportes/', DeporteListView.as_view(), name='deporte_list'),

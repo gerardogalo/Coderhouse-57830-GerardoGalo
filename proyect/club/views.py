@@ -13,6 +13,9 @@ from django.contrib.auth.models import User
 def index(request):
     return render(request, "club/index.html")
 
+def about(request):
+    return render(request, 'club/about.html')
+
 #******LISTAS
 # Lista de socios
 class SocioListView(LoginRequiredMixin, ListView):
