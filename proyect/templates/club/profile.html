@@ -1,0 +1,15 @@
+{% extends 'club/base.html' %}
+
+{% block titulo %}
+    Actualizar perfil del Usuario 
+{% endblock titulo %}
+
+{% block main %}
+<div style="text-align: center;">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar cambios</button>
+    </form>
+</div>
+{% endblock main %}

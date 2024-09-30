@@ -4,10 +4,10 @@
     <button><a href="{% url 'socio_list' %}">👥 Socios</a></button>
     <button><a href="{% url 'deporte_list' %}">⚽ Deportes</a></button>
     <button><a href="{% url 'instalaciones_list' %}">🏗️ Instalaciones</a></button>
-    <button style="color: #3f3f3f;">👤 Hola {{ user.username }}</button>
+    <button><a style="color: #3f3f3f; font-weight: bold" href="{% url 'profile' %}">👤 {{ user.username }}</a></button>
     <form action="{% url 'logout' %}" method="post" style="display: inline;">
         {% csrf_token %}
-        <button type="submit" style="color: red;">🔓 Logout</button>
+        <button type="submit"><a style="color: #3f3f3f; color: red;">🔓 Logout</a></button>
     </form>
 {% else %}
     <button><a style="color: #3f3f3f;" href="{% url 'login' %}">🔓 Login</a></button>

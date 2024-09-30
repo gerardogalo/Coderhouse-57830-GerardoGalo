@@ -1,10 +1,13 @@
+from django.db.models.base import Model as Model
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from .models import Socio, Deporte, Instalacion
 from .forms import SocioForm, DeporteForm, InstalacionForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, UserProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -126,8 +129,17 @@ class InstalacionDeleteView(LoginRequiredMixin, DeleteView):
 
 
 
-#******REGISTRO
+#******USUARIOS
 class Register(CreateView):
     form_class = CustomUserCreationForm
     template_name = 'club/register.html'
     success_url = reverse_lazy('login')
+
+class Profile(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = UserProfileForm
+    template_name = 'club/profile.html'
+    success_url = reverse_lazy('index')
+
+    def get_object(self):
+        return self.request.user

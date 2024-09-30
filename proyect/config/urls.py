@@ -24,7 +24,7 @@ from club.views import (
     InstalacionListView, InstalacionCreateView, InstalacionDetailView,
     SocioUpdateView, DeporteUpdateView, InstalacionUpdateView,
     SocioDeleteView, DeporteDeleteView, InstalacionDeleteView,
-    Register
+    Register, Profile
 )
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -49,5 +49,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='club/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='club/logout.html'), name='logout'),
     path('register/', Register.as_view(), name='register'),
+    path('profile/', Profile.as_view(), name='profile'),
 ]
 
