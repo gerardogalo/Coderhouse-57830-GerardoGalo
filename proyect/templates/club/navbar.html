@@ -4,7 +4,11 @@
     <button><a href="{% url 'socio_list' %}">👥 Socios</a></button>
     <button><a href="{% url 'deporte_list' %}">⚽ Deportes</a></button>
     <button><a href="{% url 'instalaciones_list' %}">🏗️ Instalaciones</a></button>
-    <button><a style="color: #3f3f3f; font-weight: bold" href="{% url 'profile' %}">👤 {{ user.username }}</a></button>
+    <button><a style="color: #3f3f3f; font-weight: bold" href="{% url 'profile' %}">
+        👤 {{ user.username }}
+        {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" alt="avatar" style="height: 30px; vertical-align: middle;">
+        {% endif %}</a></button>
     <form action="{% url 'logout' %}" method="post" style="display: inline;">
         {% csrf_token %}
         <button type="submit"><a style="color: #3f3f3f; color: red;">🔓 Logout</a></button>
