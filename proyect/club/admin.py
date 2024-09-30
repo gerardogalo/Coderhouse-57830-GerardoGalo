@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Socio, Deporte, Instalacion
+from .models import Socio, Deporte, Instalacion, UserProfile
 
 # Register your models here.
 
@@ -40,3 +40,10 @@ class InstalacionAdmin(admin.ModelAdmin):
     list_filter = ('disponible', 'necesita_reserva')
     search_fields = ('nombre',)
     ordering = ('-capacidad',)
+
+
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'avatar')
+    fields = ('user', 'avatar')
+
+admin.site.register(UserProfile, UserProfileAdmin)

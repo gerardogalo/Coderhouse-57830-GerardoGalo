@@ -27,6 +27,8 @@ from club.views import (
     Register, Profile
 )
 from django.contrib.auth.views import LoginView, LogoutView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # Asegúrate de que esta línea esté presente
@@ -50,5 +52,4 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='club/logout.html'), name='logout'),
     path('register/', Register.as_view(), name='register'),
     path('profile/', Profile.as_view(), name='profile'),
-]
-
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
