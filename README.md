@@ -34,8 +34,6 @@ Puedes ver un video demostrativo de la aplicación web funcionando en el siguien
     ```
     pip install django
     pip install pillow
-    django-admin startproject config .
-    python manage.py startapp club  
     ```
 4. Realizar migraciones y crear un superusuario:
     ```
